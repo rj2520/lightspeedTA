@@ -394,7 +394,7 @@
 .select-box {
   background-color: tomato;
   color: white;
-  margin: 1rem;
+  margin: 1.5rem;
   padding: 1rem;
 }
 </style>
