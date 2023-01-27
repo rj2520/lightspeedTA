@@ -365,7 +365,7 @@
       carmake: [
         'Acura', 'Alfa Roemo', 'Audi',
         'BMW',
-        'Cherolet', 'Cadillac',
+        'Chevrolet', 'Cadillac',
         'Dodge',
         'Ferrari', 'Fait', 'Ford',
         'Honda', 'Hyundai',
