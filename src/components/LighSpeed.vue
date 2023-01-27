@@ -471,7 +471,7 @@
         'Relocation of rear suspension mounting points',
         'Front steering tie rod bump steer modifications or shimming of the steering rack',
         'Alteration of ball joints/dive angles',
-        'Add panhard rod or Watts link ',
+        'Add panhard rod or Watts link',
         'Replace or modify a BTM panhard rod or Watt’s link',
         'Add torque arm',
         'Replace or modify a BTM torque arm',
@@ -489,7 +489,7 @@
         'Add, replace, or modify front fascia and/or air dam', 
         'Add, replace or modify a single flat, horizontal, front splitter', 
         'Add or modify canards/winglets (includes portions of an added/modified/replaced fascia that provide a downward force',
-        'Add, replace, or modify rear wing and/or spoiler ',
+        'Add, replace, or modify rear wing and/or spoiler',
         'Add or fabricate flat bottom/belly tray',
         'Add rear diffuser',
         'Replace or modify BTM rear diffuser, rear bumper cover, or rear “fascia”',
@@ -620,7 +620,7 @@
         'Relocation of rear suspension mounting points': 6,
         'Front steering tie rod bump steer modifications or shimming of the steering rack': 2,
         'Alteration of ball joints/dive angles': 2,
-        'Add panhard rod or Watts link ': 4,
+        'Add panhard rod or Watts link': 4,
         'Replace or modify a BTM panhard rod or Watt’s link': 2,
         'Add torque arm': 4,
         'Replace or modify a BTM torque arm': 2,
@@ -638,7 +638,7 @@
         'Add, replace, or modify front fascia and/or air dam': 3, 
         'Add, replace or modify a single flat, horizontal, front splitter': 3, 
         'Add or modify canards/winglets (includes portions of an added/modified/replaced fascia that provide a downward force': 2,
-        'Add, replace, or modify rear wing and/or spoiler ': 4,
+        'Add, replace, or modify rear wing and/or spoiler': 4,
         'Add or fabricate flat bottom/belly tray': 5,
         'Add rear diffuser': 2,
         'Replace or modify BTM rear diffuser, rear bumper cover, or rear “fascia”': 1,
@@ -742,7 +742,7 @@
 
         //Adding suspension
         this.carspec.suspension.forEach(element => {
-          this.score += this.scoreLookupTable.engine[element]
+          this.score += this.scoreLookupTable.suspension[element]
         });
         
         // Adding chassis
