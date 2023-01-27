@@ -1,19 +1,19 @@
 <template>
   <v-app>
     <v-main>
-      <HelloWorld/>
+      <light-speed/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import LightSpeed from './components/LighSpeed.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    LightSpeed,
   },
 
   data: () => ({
@@ -24,6 +24,6 @@ export default {
 
 <style>
 #app {
-  background: url("./assets/bg.png");
+  background:rgba(245, 209, 4, 0.774);
 }
 </style>
