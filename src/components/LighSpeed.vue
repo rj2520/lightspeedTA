@@ -45,7 +45,7 @@
     </v-app-bar>
   </div>
 </template>
-  </div>
+</div>
   <div class="select-box">
     <v-stepper
        v-model="e6"
@@ -339,7 +339,8 @@
               dark
             >Opening from the top</v-toolbar>
             <v-card-text>
-              <div class="text-h2 pa-12">Your base class is yyds + modification score {{score}}</div>
+              <div class="text-h2 pa-12">Base class: {{carclass}}</div>
+              <div class="text-h2 pa-12">Modification point: {{score}}</div>
               <div class="text-h4 pa-12"><a href="https://lightspeed.motorsportreg.com/" target="_blank">Join the Challenge</a></div>
             </v-card-text>
             <v-card-actions class="justify-end">
@@ -377,7 +378,7 @@
         'VW'
       ],
       model: {
-        'Acura': ['ILX 2.4L(13)', 'Integra 1.6L(86-89', 'Integra 1.8L(non-VTEC)(90-93)', 'Integra 1.8(non-VTEC)(94-01)',
+        'Acura': ['ILX 2.4L(13)', 'Integra 1.6L(86-89)', 'Integra 1.8L(non-VTEC)(90-93)', 'Integra 1.8(non-VTEC)(94-01)',
                   'Integra GSR', 'Integra Type-R', 'NSX 3.0L(91-96)', 'NSX', 'RSX', 'RSX-S'],
         'Alfa Roemo': ['4C', 'Giulia Quadrifoglio'],
         'Audi': ['S4(03-07)(AWD)', 'RS4(4.2L)(AWD)(07)', 'TT(180hp)(00-06)', 'TT(225hp)(02-06)(AWD)', 'TT(250hp)(04-06)',
@@ -559,6 +560,7 @@
         weight: [],
       },
       score:0,
+      carclass: null,
       e6:1,
       e7:[],
       scoreLookupTable: {
@@ -669,7 +671,7 @@
         }
       },
       classLookupTable: {
-        'ILX 2.4L(13)': 'TTE', 'Integra 1.6L(86-89': 'TTE', 'Integra 1.8L(non-VTEC)(90-93)': 'TTE', 'Integra 1.8(non-VTEC)(94-01)': 'TTE',
+        'ILX 2.4L(13)': 'TTE', 'Integra 1.6L(86-89)': 'TTE', 'Integra 1.8L(non-VTEC)(90-93)': 'TTE', 'Integra 1.8(non-VTEC)(94-01)': 'TTE',
         'Integra GSR': 'TTE', 'Integra Type-R': 'TTD', 'NSX 3.0L(91-96)': 'TTC', 'NSX': 'TTC', 'RSX': 'TTE', 'RSX-S': 'TTD',
         '4C': 'TTC', 'Giulia Quadrifoglio': 'TTB',
         'S4(03-07)(AWD)': 'TTC', 'RS4(4.2L)(AWD)(07)': 'TTB', 'TT(180hp)(00-06)': 'TTE', 'TT(225hp)(02-06)(AWD)': 'TTD', 'TT(250hp)(04-06)':'TTD',
@@ -718,9 +720,20 @@
     methods: {
       calculateScore() {
         console.log(this.carspec)
+        
         // Look up if model needs extra points penalty
+        if (this.oneStarModel.includes(this.carspec.model)) {
+          this.score += 7;
+        }
+
+        if (this.twoStarModel.includes(this.carspec.model)) {
+          this.score += 14;
+        }
 
         // Adding engine
+        this.carspec.engine.forEach(element => {
+          this.score += this.scoreLookupTable.engine[element]
+        });
 
         // Adding drivetain
         this.carspec.drivetrain.forEach(element => {
@@ -728,7 +741,10 @@
         });
 
         //Adding suspension
-
+        this.carspec.suspension.forEach(element => {
+          this.score += this.scoreLookupTable.engine[element]
+        });
+        
         // Adding chassis
         this.carspec.chassis.forEach(element => {
           this.score += this.scoreLookupTable.chassis[element]
@@ -748,6 +764,9 @@
         this.carspec.weight.forEach(element => {
           this.score += this.scoreLookupTable.weight[element]
         });
+
+        //Getting car class
+        this.carclass = this.classLookupTable[this.carspec.model]
       },
 
       getModel() {
