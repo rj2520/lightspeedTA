@@ -395,7 +395,7 @@
         'Fait': ['124', '500 Abarth'],
         'Ford': ['Fiesta ST', 'Focus ST', 'Focus RS', 'Mustang GT V8(5th gen)', 'Mustang GT V8(6th)', 'Mustang GT350',
                  'Mustang GT350R', 'Mustang GT500'],
-        'Honda': ['Accord 3.0 V6', 'Accord 3.5 V6', 'Civic Si', 'Civic Type R(FK8/FL5)', 'Fit', 'S2000(00-08', 'S2000(K Swap)', 'S2000 CR(2.2L)'],
+        'Honda': ['Accord 3.0 V6', 'Accord 3.5 V6', 'Civic Si', 'Civic Type R(FK8/FL5)', 'Fit', 'S2000(00-08)', 'S2000(K Swap)', 'S2000 CR(2.2L)'],
         'Hyundai': ['Genesis', 'Veloster N', 'Elantra N', 'Kona N'],
         'Lamborghini': ['Huracan', 'Gallardo', 'Aventador', 'Urus'],
         'Lotus': ['Elise', 'Evora', 'Exige'],
@@ -773,18 +773,13 @@
          
         //Getting final car class
         var totalscore = this.score + this.classesScore[this.carclass]
-        console.log(totalscore)
         var level = parseInt(totalscore/20)
-        console.log(level)
         if (level > 5){
           this.finalclass = 'TTSU'
         }
         else{
           this.finalclass = this.classes[level]
         }
-        console.log(this.finalclass)
-        
-
       },
 
       getModel() {
