@@ -271,7 +271,7 @@
     </v-row>
       <v-btn
         color="primary"
-        @click="e6 = 4"
+        @click="calculateScore(); e6 = 4"
       >
         Continue
       </v-btn>
@@ -326,7 +326,6 @@
             Reset
           </v-btn>
           <v-btn
-            @click="calculateScore"
             color="primary"
             v-bind="attrs"
             v-on="on"
@@ -525,27 +524,27 @@
       classes: ['TTE', 'TTD', 'TTC', 'TTB', 'TTA', 'TTU', 'TTSU'],
       categories: [
         {
-          name: 'Class One',
+          name: 'Move up 1 class',
           score: '20 - 39 points',
 
         },
         {
-          name: 'Class Two',
+          name: 'Move up 2 class',
           score: '40 - 59 points',
 
         },
         {
-          name: 'Class Three',
+          name: 'Move up 3 class',
           score: '60 - 79 points',
 
         },
         {
-          name: 'Class Four',
+          name: 'Move up 4 class',
           score: '80 - 99 points',
 
         },
         {
-          name: 'Class Five',
+          name: 'Move up 5 class',
           score: '100 - 119 points',
 
         },
@@ -770,7 +769,6 @@
 
         //Getting base car class
         this.carclass = this.classLookupTable[this.carspec.model]
-         
         //Getting final car class
         var totalscore = this.score + this.classesScore[this.carclass]
         var level = parseInt(totalscore/20)
