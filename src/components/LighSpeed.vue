@@ -106,6 +106,14 @@
       >
         Continue
       </v-btn>
+      &nbsp;
+      <v-btn
+        color="primary"
+        @click="e6 = 1"
+      >
+        Back
+      </v-btn>
+
     </v-stepper-content>
 
     <v-stepper-step
@@ -117,6 +125,28 @@
 
     <v-stepper-content step="3">
       <v-row align="center">
+        <v-col
+        cols="12"
+        sm="6"
+      >
+      <v-subheader v-text="'Engine Type'"></v-subheader>
+      </v-col>
+
+      <v-col
+        cols="12"
+        sm="6"
+      >
+        <v-select
+          v-model="carspec.inductype"
+          :items="inductype"
+          label="Select"
+          multiple
+          small-chips
+          hint="Turbo is for..."
+          persistent-hint
+        ></v-select>
+      </v-col>
+
       <v-col
         cols="12"
         sm="6"
@@ -275,6 +305,14 @@
       >
         Continue
       </v-btn>
+
+      &nbsp;
+      <v-btn
+        color="primary"
+        @click="e6 = 2"
+      >
+        Back
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-step step="4">
@@ -319,6 +357,14 @@
         max-width="600"
       >
         <template v-slot:activator="{ on, attrs }">
+
+          &nbsp;
+      <v-btn
+        color="primary"
+        @click="e6 = 3"
+      >
+        Back
+      </v-btn>
           <v-btn 
           @click="reloadPage"
           text
@@ -369,52 +415,62 @@
         'Dodge',
         'Ferrari', 'Fait', 'Ford',
         'Honda', 'Hyundai',
+        'Infiniti',
         'Lamborghini', 'Lotus', 'Lexus',
-        'Mazda', 'Mercedes', 'McLaren', 'Mini', 'Mitsubishi',
+        'Maserati','Mazda', 'Mercedes', 'McLaren', 'Mini', 'Mitsubishi',
         'Nissan',
-        'Porsche',
+        'Pontiac','Porsche',
         'Subaru',
         'Tesla', 'Toyota',
         'VW'
       ],
       model: {
-        'Acura': ['ILX 2.4L(13)', 'Integra 1.6L(86-89)', 'Integra 1.8L(non-VTEC)(90-93)', 'Integra 1.8(non-VTEC)(94-01)',
+        'Acura': ['Integra 1.6L(86-89)', 'Integra 1.8L(non-VTEC)(90-93)', 'Integra 1.8(non-VTEC)(94-01)',
                   'Integra GSR', 'Integra Type-R', 'NSX 3.0L(91-96)', 'NSX', 'RSX', 'RSX-S'],
         'Alfa Roemo': ['4C', 'Giulia Quadrifoglio'],
-        'Audi': ['S4(03-07)(AWD)', 'RS4(4.2L)(AWD)(07)', 'TT(180hp)(00-06)', 'TT(225hp)(02-06)(AWD)', 'TT(250hp)(04-06)',
-                 'TT Quatro 3.2L (08-09)(AWD)', 'TTS(09-15)(AWD)(Turbo)', 'TTRS 2.5 Coupe (12-13)(AWD)', 'R8(V8)', 'R8(V10)'],
-        'BMW': ['128i Coupe(08-09)', '135i Coupe(08-12)', '328i(E36)', '328i(E46)', '328i(12-14)(2.0Lturbo)', '335i(07-13)(3.0)turbo',
-                'M2', 'M2CS', 'M235', 'M240', 'M3(E30)', 'M3(E36)', 'M3(E46)', 'M3(E90,E92,E93)', 'M3/M4(F8X)', 'M3/M4(G8X)',
-                'M5 E28 E34(85-93)', 'M5 E39', 'M5 E60', 'M6', 'Z4'],
-        'Cadillac': ['CTS-V(04-07)', 'CTS-V(09-11)'],
-        'Chevrolet': ['Camaro SS(5th gen)', 'Camaro SS(6th gen)', 'Corvette C4', 'Corvette C5', 'Corvette C6', 'Corvette C7',
-                      'Corvette C7 Z06', 'Corvette C7 ZR-1', 'Corvette C8'],
-        'Dodge': ['Challenger R/T', 'Challenger SRT8', 'Charger 5.7L', 'Charger SRT8', 'Viper', 'Viper ACR'],
-        'Ferrari': ['308', '328', '355', '360', 'F430', '458', '488', 'F12'],
+        'Audi': ['RS4(4.2L)(AWD)(07)', 'TT', 'TT RS', 'R8(V8)', 'R8(V10)'],
+        'BMW': ['M3 (E90, E92, E93)', 'M3/M4(F8X)(15)', 'M3/M4(G8X)(20)', 'M6', 'MINI Cooper S(05-10)', 'MINI Cooper Works',
+                'Z3', 'Z4', '128i Coupe(08-09)', '135i Coupe(08-12)', '1M Coupe(3.0L turbo)', 'E30 Non M', 'E36 Non M', 'E46 Non M',
+                '328i(07-12)(3.0L 230 hp)', '328i(07-12)(3.0L 230 hp)', '330(01-06)(225hp)', '330(06)(255hp)', '335i(07-13)(3.0L turbo)',
+                'M2', 'M2 Competition/CS', 'M235i Coupe(14-15)(3.0L)', 'M3(E30)', 'M3(E36)', 'M3(E46)', 'M3(E9X)'],
+        'Cadillac': ['ATSV' ,'CTS-V Gen 1', 'CTS-V Gen 2', 'CTS-V Gen 3'],
+        'Chevrolet': ['Camaro ZL1&Z28 (5th Gen)', 'Camaro ZL1(6th Gen)', 'Camaro ZL1(6th Gen 1LE)', 'Camaro SS(5th Gen incl 1LE)', 'Camaro SS(6h Gen)', 'Camaro SS(6h Gen) 1LE',
+                      'Corvette C5(inc. Z06)', 'Corvette C6', 'Corvette C6 Z06 & GS', 'Corvette C7 Z06', 'Corvette C7(incl Z51 & GS)', 'Corvette C7 ZR1', 'Corvette C8 / C8 Z51'],
+        'Dodge': ['Viper', 'Viper ACR'],
+        'Ferrari': ['355', '360', '360 Challenge','F430', '458', '488', 'ENZO'],
         'Fait': ['124', '500 Abarth'],
         'Ford': ['Fiesta ST', 'Focus ST', 'Focus RS', 'Mustang GT V8(5th gen)', 'Mustang GT V8(6th)', 'Mustang GT350',
-                 'Mustang GT350R', 'Mustang GT500'],
-        'Honda': ['Accord 3.0 V6', 'Accord 3.5 V6', 'Civic Si', 'Civic Type R(FK8/FL5)', 'Fit', 'S2000(00-08)', 'S2000(K Swap)', 'S2000 CR(2.2L)'],
-        'Hyundai': ['Genesis', 'Veloster N', 'Elantra N', 'Kona N'],
-        'Lamborghini': ['Huracan', 'Gallardo', 'Aventador', 'Urus'],
-        'Lotus': ['Elise', 'Evora', 'Exige'],
-        'Lexus': ['IS F', 'GS F', 'LC500'],
-        'Mazda': ['Mazdaspeed3(07-09)', 'Mazdaspeed3(10-13)', 'Mazdaspeed6(06-07)', 'Miata 1.6L', 'Miata 1.8L', 'Miata 1.8L VVT',
-                  'Miata NC', 'Miata ND', 'Miata Mazdaspeed', 'RX7 13B', 'RX-7 TT(3rd gen)', 'RX-8(04-08)', 'RX-8(09-11)',
-                  'RX-8 R3(09-11)', 'RX-8(197hp)(Auto)(04-05)','RX-8(212hp)(Auto)(06-07)'],
-        'Mercedes': ['C43AMG', 'C63AMG', 'E55AMG', 'E63AMG', 'GT', 'GTs', 'SLS'],
-        'McLaren': ['MP4 12C', '570s', '600LT', '650s', '720s', 'Senna'],
-        'Mini': ['Cooper S(02-04)', 'Cooper S(05-10)', 'Cooper S(F56)'],
+                 'Mustang GT350R', 'Mustang GT500(S550)', 'Mustang GT500(S197)', 'GT', 'Mustang 2.3L turbo (15)','Mustang Boss 302'],
+        'Honda': ['Civic & SI(Pre-05)', 'Civic & SI (06-present)', 'Civic Type R(17-Present)', 'S2000(00-08)', 'S2000(K Swap)', 'S2000 CR(2.2L)'],
+        'Hyundai': ['Veloster 1.6L Turbo (13-Present)', 'Genesis 3.8L', 'Elantra/Veloster N', 'Elantra 2.0L(00-08)'],
+        'Infiniti': ['G35', 'G37'],
+        'Lamborghini': ['Diablo VT', 'Huracan', 'Gallardo', 'Aventador'],
+        'Lotus': ['Elise(05-07)', 'Evora(10-14)', 'Exige'],
+        'Lexus': ['IS250(06-08)(6sp man)', 'IS250 (AWD)(06-08)', 'IS300', 'IS F', 'GS F', 'LC500'],
+        'Maserati': ['GranTurismo'],
+        'Mazda': ['RX-7(FB&FC)', 'RX-7 FD', 'RX-8', 'Mazdaspeed3', 'Mazdaspeed6', 'NA', 'NB', 'NB(mazdaspeed)', 'NC', 'ND'],
+        'Mercedes': ['AMG A45','C43AMG(98-00)','C55 AMG(05-06)', 'CL55 AMG(5.4L)(01-02)', 'CL65 AMG(06)', 'CLK55 AMG(04-06)', 'CLK63 AMG(07)', 'E55 AMG(03-06)',
+                     'E55 AMG(99-02)', 'E63 AMG(07)', 'SL55 AMG(03-06)', 'SL55 AMG(07)', 'SL65 AMG(07)', 'SLK 320(01-04)','SLK32 AMG(02-04)','SLK 350(05-08)',
+                     'SLK55 AMG(05-07)'],
+        'McLaren': ['MP4-12C', '570s', '600LT', '650s', '720s', 'Senna'],
         'Mitsubishi': ['EVO VIII', 'EVO IX', 'EVO X'],
-        'Nissan': ['240Z', '300ZX', '350Z', '370Z', '400Z', 'GTR'],
-        'Porsche': ['964', '993', '996', '996GT3', '997.1', '997.2', '997 Turbo', '997.1 GT3', '997.2 GT3', '997 GT3RS',
-                    '991.1', '991.2', '991.1 GT3', '991.2 GT3', '991 Turbo', '991 GT3RS', '991 GT2RS', '992', '992 Turbo',
-                    '992 GT3', 'Cayman/Boxster 718', 'Cayman/Boxster 981', 'Cayman/Boxter GTS', 'Cayman 981 GT4', '718 GT4'],
-        'Subaru': ['BRZ(gen1)', 'BRZ(gen2)', 'STI', 'WRX', 'WRX(02-08)'],
-        'Tesla': ['Model 3', 'Model 3 Dual Motor', 'Model S', 'Model S Plaid'],
-        'Toyota': ['FRS/FT86', 'GR86', 'Supra(2.0)', 'Supra(3.0)', 'GR Corolla', 'Celica GT-S', 'MR2 (gen1)', 'MR2 2.2L DOCH', 'MR2 SC', 'MR2 Turbo'],
-        'VW': ['GTI(06-09)', 'GTI(10-14)', 'GTI(15)', 'GTI(19)', 'GOLF R32', 'GOLF R(12-13)', 'GOLF R(15)', 'GOLF R(19)']
+        'Nissan': ['350Z', '350Z Nismo','370Z', '370Z Nismo', 'GTR'],
+        'Pontiac': ['GTO'],
+        'Porsche': ['996', '997', '997 GT3', '997 Turbo AWD', '997 GT3 RS', '991 All Models',
+                    '991 GT3', '991 GT3RS', '991 GT2RS', '992 All Models', '992 GT3',
+                    '718 Cayman/Boxster', '981 Cayman/Boxster', 'Cayman GT4', 'Cayman GTS',
+                    'Cayman/Boxster 986 S', 'Cayman/Boxster 986 Non S', 'Carrera GT',
+                    'Cayman/Boxster 987 Non S', 'Cayman/Boxster 987 S', 'Cayman R 3.4L(11-12)',
+                    '959', '964'],
+        'Subaru': ['BRZ(gen1)', 'BRZ(gen2)', 'WRX 2.0L', 'WRX 2.5L', 'WRX STi(04-07)', 'WRX STi(08+)'],
+        'Tesla': ['Model 3 SM', 'Model 3 DM', 'Model S DM', 'Model S Plaid'],
+        'Toyota': ['FRS/FT86', 'GR86', 'Supra(2.0)', 'Supra(3.0)', 'Celica', 'MR2 S/2', 'MR2 Turbo'],
+        'VW': ['Golf R', 'GTI 2.0L', 'Jetta 2.0L GLI(12-15)']
       },
+      inductype: [
+        'Naturally aspirated (0)',
+        'Forced induction (5)'
+    ],
       engine: [
         'Aftermarket computer system natually aspirated (3)',
         'Aftermarket computer system forced induction (10)',
@@ -501,15 +557,11 @@
         'Add a non-OEM hardtop to a convertible that is not the identical shape and size of either the OEM or OEM option hardtop for that car model (5)'
       ],
       tires: [
-        'The following DOT-approved R-compound tires: BFG R1S, Goodyear Eagle RS AC (auto- cross), Hoosier A7, Hankook Z214 (C90 & C91 compounds only), Hoosier Wet DOT (22)',
-        'The following DOT-approved R-compound tires and those with a UTQG treadwear rating of 40 or less not listed otherwise in these rules: BFG R1, Goodyear Eagle RS (10)',
-        'Hankook Z214, Hoosier R7, Kumho V710, Yokohama A055 (10)',
-        'BFGoodrich g-Force Rival, Cooper RS3-R, Maxxis Victra RC-1, Michelin Pilot Sport 4S (6)',
-        ' Nankang AR-1, Nitto NT01, Toyo Proxes R888/R888R/RA-1/RR (6)',
-        'Bridgestone Potenza RE-71R/RE-71RS, BFGoodrich g-Force Rival S, Continental ExtremeContact Force, Dunlop Direzza ZII (3)',
-        'Falken Azenis RT615K+, Falken Azenis RT660, Maxxis Victra VR-1, Federa 595 RS-RR (3)',
-        'Goodyear Eagle F1 SuperCar 3, Hankook Ventus RS4, Kumho ECSTA V720/V730, Michelin Sport Cup 2 Connect (3)', 
-        'Nankang CR-S/NS-2R, Nexen Nfera SUR4G, Yokohama Advan AD09/A052, Valino VR08GP, Toyo Proxes R1R (3)'  
+        '200TW+ NOT Including SUPER 200TW (0)',
+        'SUPER 200TW: CR1/S, RT600, A052, SUR4G, V730, Rival S1.5, RE71-R/RS, Goodyear SC3 (4)',
+        'SUPER 200TW: Continental ECF, Dir ZIII, 595RS-RR, Michelin cup2 connect (4)',
+        '41TW - 180TW (10)',
+        'Dot/Non-Dot Slicks (22)'  
       ],
       weight: [
         '5 lbs (1)', '20 lbs (2)', '35 lbs (3)', '50 lbs (4)', '65 lbs (5)',
@@ -552,6 +604,7 @@
       carspec: {
         make: "",
         model: "",
+        inductype: [],
         engine: [],
         drivetrain: [],
         suspension: [],
@@ -566,6 +619,10 @@
       e6:1,
       e7:[],
       scoreLookupTable: {
+        inductype: {
+        'Naturally aspirated (0)': 0,
+        'Forced induction (5)': 5
+        },
         engine: {
         'Aftermarket computer system natually aspirated (3)': 3,
         'Aftermarket computer system forced induction (10)': 10,
@@ -652,15 +709,11 @@
         'Add a non-OEM hardtop to a convertible that is not the identical shape and size of either the OEM or OEM option hardtop for that car model (5)': 5
         },
         tires: {
-        'The following DOT-approved R-compound tires: BFG R1S, Goodyear Eagle RS AC (auto- cross), Hoosier A7, Hankook Z214 (C90 & C91 compounds only), Hoosier Wet DOT (22)': 22,
-        'The following DOT-approved R-compound tires and those with a UTQG treadwear rating of 40 or less not listed otherwise in these rules: BFG R1, Goodyear Eagle RS (10)': 10,
-        'Hankook Z214, Hoosier R7, Kumho V710, Yokohama A055 (10)': 10,
-        'BFGoodrich g-Force Rival, Cooper RS3-R, Maxxis Victra RC-1, Michelin Pilot Sport 4S (6)': 6,
-        ' Nankang AR-1, Nitto NT01, Toyo Proxes R888/R888R/RA-1/RR (6)': 6,
-        'Bridgestone Potenza RE-71R/RE-71RS, BFGoodrich g-Force Rival S, Continental ExtremeContact Force, Dunlop Direzza ZII (3)': 3,
-        'Falken Azenis RT615K+, Falken Azenis RT660, Maxxis Victra VR-1, Federa 595 RS-RR (3)': 3,
-        'Goodyear Eagle F1 SuperCar 3, Hankook Ventus RS4, Kumho ECSTA V720/V730, Michelin Sport Cup 2 Connect (3)': 3, 
-        'Nankang CR-S/NS-2R, Nexen Nfera SUR4G, Yokohama Advan AD09/A052, Valino VR08GP, Toyo Proxes R1R (3)': 3 
+        '200TW+ NOT Including SUPER 200TW (0)': 0,
+        'SUPER 200TW: CR1/S, RT600, A052, SUR4G, V730, Rival S1.5, RE71-R/RS, Goodyear SC3 (4)': 4,
+        'SUPER 200TW: Continental ECF, Dir ZIII, 595RS-RR, Michelin cup2 connect (4)': 4,
+        '41TW - 180TW (10)': 10,
+        'Dot/Non-Dot Slicks (22)': 22  
         },
         weight: {
         '5 lbs (1)': 1, '20 lbs (2)': 2, '35 lbs (3)': 3, '50 lbs (4)': 4, '65 lbs (5)': 5,
@@ -673,51 +726,62 @@
         }
       },
       classLookupTable: {
-        'ILX 2.4L(13)': 'TTE', 'Integra 1.6L(86-89)': 'TTE', 'Integra 1.8L(non-VTEC)(90-93)': 'TTE', 'Integra 1.8(non-VTEC)(94-01)': 'TTE',
-        'Integra GSR': 'TTE', 'Integra Type-R': 'TTD', 'NSX 3.0L(91-96)': 'TTC', 'NSX': 'TTC', 'RSX': 'TTE', 'RSX-S': 'TTD',
+        'Integra 1.6L(86-89)': 'TTE', 'Integra 1.8L(non-VTEC)(90-93)': 'TTE', 'Integra 1.8(non-VTEC)(94-01)': 'TTE',
+        'Integra GSR': 'TTE', 'Integra Type-R': 'TTD', 'NSX 3.0L(91-96)': 'TTC', 'NSX': 'TTC', 'RSX': 'TTE', 'RSX-S':'TTD', 
         '4C': 'TTC', 'Giulia Quadrifoglio': 'TTB',
-        'S4(03-07)(AWD)': 'TTC', 'RS4(4.2L)(AWD)(07)': 'TTB', 'TT(180hp)(00-06)': 'TTE', 'TT(225hp)(02-06)(AWD)': 'TTD', 'TT(250hp)(04-06)':'TTD',
-        'TT Quatro 3.2L (08-09)(AWD)': 'TTD', 'TTS(09-15)(AWD)(Turbo)': 'TTC', 'TTRS 2.5 Coupe (12-13)(AWD)': 'TTB', 'R8(V8)': 'TTA', 'R8(V10)': 'TTA',
-        '128i Coupe(08-09)': 'TTD', '135i Coupe(08-12)': 'TTC', '328i(E36)': 'TTE', '328i(E46)': 'TTE', '328i(12-14)(2.0Lturbo)': 'TTD', '335i(07-13)(3.0)turbo': 'TTC',
-        'M2': 'TTB', 'M2CS': 'TTA', 'M235': 'TTC', 'M240': 'TTB', 'M3(E30)':'TTE', 'M3(E36)': 'TTD', 'M3(E46)':'TTC', 'M3(E90,E92,E93)': 'TTB', 'M3/M4(F8X)':'TTA', 'M3/M4(G8X)':'TTA',
-        'M5 E28 E34(85-93)':'TTD', 'M5 E39':'TTC', 'M5 E60': 'TTA', 'M6': 'TTA', 'Z4':'TTB',
-        'CTS-V(04-07)': 'TTC', 'CTS-V(09-11)': 'TTA',
-        'Camaro SS(5th gen)': 'TTB', 'Camaro SS(6th gen)': 'TTB', 'Corvette C4': 'TTC', 'Corvette C5': 'TTA', 'Corvette C6': 'TTA', 'Corvette C7': 'TTA',
-        'Corvette C7 Z06': 'TTA', 'Corvette C7 ZR-1': 'TTA', 'Corvette C8': 'TTA',
-        'Challenger R/T': 'TTD', 'Challenger SRT8': 'TTC', 'Charger 5.7L': 'TTD', 'Charger SRT8': 'TTC', 'Viper': 'TTA', 'Viper ACR': 'TTA',
-        '308':'TTD', '328': 'TTC', '355': 'TTA', '360': 'TTA', 'F430': 'TTA', '458': 'TTA', '488': 'TTA', 'F12': 'TTA',
+        'RS4(4.2L)(AWD)(07)': 'TTB', 'TT': 'TTB', 'TT RS': 'TTB', 'R8(V8)': 'TTA', 'R8(V10)':'TTU',
+        'M3 (E90, E92, E93)':'TTB', 'M3/M4(F8X)(15)':'TTA', 'M3/M4(G8X)(20)':'TTA', 'M6':'TTA', 'MINI Cooper S(05-10)':'TTE', 'MINI Cooper Works':'TTD',
+        'Z3':'TTD', 'Z4':'TTD', '128i Coupe(08-09)':'TTD', '135i Coupe(08-12)':'TTC', '1M Coupe(3.0L turbo)':'TTB', 'E30 Non M':'TTE', 'E36 Non M':'TTE', 'E46 Non M':'TTD',
+        '328i(07-12)(3.0L 230 hp)':'TTE', '328i(12-14)(3.0L 230 hp)':'TTD', '330(01-06)(225hp)':'TTE', '330(06)(255hp)':'TTD', '335i(07-13)(3.0L turbo)':'TTC',
+        'M2':'TTA', 'M2 Competition/CS':'TTA', 'M235i Coupe(14-15)(3.0L)':'TTC', 'M3(E30)':'TTE', 'M3(E36)':'TTD', 'M3(E46)':'TTC', 'M3(E9X)':'TTB',
+        'ATSV':'TTA' ,'CTS-V Gen 1':'TTC', 'CTS-V Gen 2':'TTA', 'CTS-V Gen 3':'TTA',
+        'Camaro ZL1&Z28 (5th Gen)':'TTA', 'Camaro ZL1(6th Gen)':'TTA', 'Camaro ZL1(6th Gen 1LE)':'TTU', 'Camaro SS(5th Gen incl 1LE)':'TTB', 'Camaro SS(6h Gen)':'TTB', 'Camaro SS(6h Gen) 1LE':'TTA',
+        'Corvette C5(inc. Z06)':'TTA', 'Corvette C6':'TTA', 'Corvette C6 Z06 & GS':'TTA', 'Corvette C7 Z06':'TTU', 'Corvette C7(incl Z51 & GS)':'TTA', 'Corvette C7 ZR1':'TTU', 'Corvette C8 / C8 Z51':'TTA',
+        'Viper': 'TTA', 'Viper ACR': 'TTU',
+        '355':'TTA', '360':'TTA', '360 Challenge':'TTU','F430':'TTU', '458':'TTU', '488':'TTU', 'ENZO':'TTU', 
         '124': 'TTE', '500 Abarth': 'TTE',
-        'Fiesta ST': 'TTE', 'Focus ST': 'TTD', 'Focus RS': 'TTC', 'Mustang GT V8(5th gen)': 'TTB', 'Mustang GT V8(6th)': 'TTB', 'Mustang GT350': 'TTA',
-        'Mustang GT350R': 'TTA', 'Mustang GT500': 'TTA',
-        'Accord 3.0 V6': 'TTE', 'Accord 3.5 V6': 'TTD', 'Civic Si': 'TTE', 'Civic Type R(FK8/FL5)': 'TTC', 'Fit': 'TTE', 'S2000(00-08)': 'TTD', 'S2000(K Swap)': 'TTC', 'S2000 CR(2.2L)':'TTC',
-        'Genesis': 'TTB', 'Veloster N': 'TTC', 'Elantra N':'TTC', 'Kona N': 'TTC',
-        'Huracan': 'TTA', 'Gallardo': 'TTA', 'Aventador':'TTA', 'Urus': 'TTB',
-        'Elise': 'TTB', 'Evora': 'TTA', 'Exige': 'TTA',
-        'IS F': 'TTB', 'GS F' : 'TTB', 'LC500': 'TTB',
-        'Mazdaspeed3(07-09)': 'TTD', 'Mazdaspeed3(10-13)': 'TTD', 'Mazdaspeed6(06-07)':'TTD', 'Miata 1.6L': 'TTE', 'Miata 1.8L': 'TTE', 'Miata 1.8L VVT': 'TTE',
-        'Miata NC': 'TTE', 'Miata ND': 'TTE', 'Miata Mazdaspeed': 'TTE', 'RX7 13B': 'TTE', 'RX-7 TT(3rd gen)': 'TTC', 'RX-8(04-08)': 'TTD', 'RX-8(09-11)': 'TTD',
-        'RX-8 R3(09-11)': 'TTC', 'RX-8(197hp)(Auto)(04-05)': 'TTE','RX-8(212hp)(Auto)(06-07)': 'TTE',
-        'C43AMG': 'TTC', 'C63AMG':'TTB', 'E55AMG':'TTB', 'E63AMG': 'TTB', 'GT': 'TTA', 'GTs': 'TTA', 'SLS':'TTA',
-        'MP4 12C': 'TTA', '570s': 'TTA', '600LT': 'TTA', '650s': 'TTA', '720s': 'TTA', 'Senna': 'TTA',
-        'Cooper S(02-04)': 'TTE', 'Cooper S(05-10)': 'TTE', 'Cooper S(F56)': 'TTD',
-        'EVO VIII': 'TTC', 'EVO IX': 'TTB', 'EVO X': 'TTB',
-        '240Z': 'TTE', '300ZX': 'TTE', '350Z': 'TTC', '370Z': 'TTB', '400Z': 'TTB', 'GTR': 'TTA',
-        '964': 'TTD', '993': 'TTC', '996': 'TTB', '996GT3': 'TTA', '997.1': 'TTB', '997.2': 'TTA', '997 Turbo': 'TTA', '997.1 GT3': 'TTA', '997.2 GT3': 'TTA', '997 GT3RS': 'TTA',
-        '991.1': 'TTA', '991.2': 'TTA', '991.1 GT3': 'TTA', '991.2 GT3': 'TTA', '991 Turbo': 'TTA', '991 GT3RS': 'TTA', '991 GT2RS': 'TTA', '992': 'TTA', '992 Turbo': 'TTA',
-        '992 GT3': 'TTA', 'Cayman/Boxster 718': 'TTB', 'Cayman/Boxster 981': 'TTB', 'Cayman/Boxter GTS': 'TTA', 'Cayman 981 GT4': 'TTA', '718 GT4': 'TTA',
-        'BRZ(gen1)': 'TTD', 'BRZ(gen2)': 'TTD', 'STI': 'TTB', 'WRX': 'TTB', 'WRX(02-08)': 'TTD',
-        'Model 3': 'TTC', 'Model 3 Dual Motor': 'TTB', 'Model S': 'TTB', 'Model S Plaid': 'TTA',
-        'FRS/FT86': 'TTD', 'GR86': 'TTD', 'Supra(2.0)': 'TTB', 'Supra(3.0)': 'TTA', 'GR Corolla': 'TTB', 'Celica GT-S': 'TTE', 'MR2 (gen1)': 'TTE', 'MR2 2.2L DOCH': 'TTE', 'MR2 SC': 'TTE', 'MR2 Turbo': 'TTE',
-        'GTI(06-09)': 'TTE', 'GTI(10-14)': 'TTE', 'GTI(15)': 'TTE', 'GTI(19)':'TTD', 'GOLF R32': 'TTE', 'GOLF R(12-13)': 'TTD', 'GOLF R(15)': 'TTC', 'GOLF R(19)': 'TTB'
+        'Fiesta ST':'TTE', 'Focus ST':'TTD', 'Focus RS':'TTB', 'Mustang GT V8(5th gen)':'TTB', 'Mustang GT V8(6th)':'TTB', 'Mustang GT350':'TTA',
+        'Mustang GT350R':'TTU', 'Mustang GT500(S550)':'TTU', 'Mustang GT500(S197)':'TTU', 'GT':'TTU', 'Mustang 2.3L turbo (15)':'TTB','Mustang Boss 302':'TTA',
+        'Civic & SI(Pre-05)': 'TTD', 'Civic & SI (06-present)':'TTC', 'Civic Type R(17-Present)':'TTC', 'S2000(00-08)':'TTD', 'S2000(K Swap)':'TTD', 'S2000 CR(2.2L)':'TTD',
+        'Veloster 1.6L Turbo (13-Present)':'TTE', 'Genesis 3.8L':'TTE', 'Elantra/Veloster N':'TTC', 'Elantra 2.0L(00-08)':'TTE',
+        'G35':'TTD', 'G37':'TTC',
+        'Diablo VT':'TTU', 'Huracan':'TTU', 'Gallardo':'TTU', 'Aventador':'TTU',
+        'Elise': 'TTC', 'Evora': 'TTC', 'Exige': 'TTA',
+        'GranTurismo': 'TTB',
+        'IS250(06-08)(6sp man)':'TTE', 'IS250 (AWD)(06-08)':'TTE', 'IS300':'TTE', 'IS F':'TTB', 'GS F':'TTB', 'LC500':'TTA',
+        'RX-7(FB&FC)':'TTC', 'RX-7 FD':'TTD', 'RX-8':'TTC', 'Mazdaspeed3':'TTD', 'Mazdaspeed6':'TTD', 'NA':'TTE', 'NB':'TTE', 'NB(mazdaspeed)':'TTE', 'NC':'TTE', 'ND':'TTE',
+        'AMG A45':'TTA','C43AMG(98-00)':'TTC','C55 AMG(05-06)':'TTC', 'CL55 AMG(5.4L)(01-02)':'TTC', 'CL65 AMG(06)':'TTA', 'CLK55 AMG(04-06)':'TTC', 'CLK63 AMG(07)':'TTA', 'E55 AMG(03-06)':'TTB',
+        'E55 AMG(99-02)':'TTC', 'E63 AMG(07)':'TTA', 'SL55 AMG(03-06)':'TTB', 'SL55 AMG(07)':'TTB', 'SL65 AMG(07)':'TTA', 'SLK 320(01-04)':'TTE','SLK32 AMG(02-04)':'TTB','SLK 350(05-08)':'TTC',
+        'SLK55 AMG(05-07)':'TTB',
+        'MP4 12C': 'TTU', '570s': 'TTU', '600LT': 'TTU', '650s': 'TTU', '720s': 'TTU', 'Senna': 'TTX',
+        'EVO VIII': 'TTB', 'EVO IX': 'TTB', 'EVO X': 'TTB',
+        '350Z':'TTC', '350Z Nismo':'TTB','370Z':'TTB', '370Z Nismo':'TTA', 'GTR':'TTU',
+        'GTO':'TTC',
+        '996':'TTB', '997':'TTA', '997 GT3':'TTA', '997 Turbo AWD':'TTA', '997 GT3 RS':'TTU', '991 All Models':'TTA',
+        '991 GT3':'TTU', '991 GT3RS':'TTU', '991 GT2RS':'TTU', '992 All Models':'TTA', '992 GT3':'TTU',
+        '718 Cayman/Boxster':'TTA', '981 Cayman/Boxster':'TTA', 'Cayman GT4':'TTA', 'Cayman GTS':'TTA',
+        'Cayman/Boxster 986 S':'TTC', 'Cayman/Boxster 986 Non S':'TTC', 'Carrera GT':'TTU',
+        'Cayman/Boxster 987 Non S':'TTB', 'Cayman/Boxster 987 S':'TTB', 'Cayman R 3.4L(11-12)':'TTA',
+        '959':'TTA', '964':'TTD',
+        'BRZ(gen1)': 'TTD', 'BRZ(gen2)': 'TTD', 'WRX 2.0L':'TTB', 'WRX 2.5L':'TTD', 'WRX STi(04-07)':'TTB', 'WRX STi(08+)':'TTB',
+        'Model 3 SM': 'TTC', 'Model 3 DM':'TTB', 'Model S DM':'TTB', 'Model S Plaid':'TTA',
+        'FRS/FT86':'TTD', 'GR86':'TTD', 'Supra(2.0)':'TTB', 'Supra(3.0)':'TTA', 'Celica':'TTE', 'MR2 S/2':'TTE', 'MR2 Turbo':'TTE',
+        'Golf R':'TTD', 'GTI 2.0L':'TTD', 'Jetta 2.0L GLI(12-15)':'TTE'
       },
-      oneStarModel: ['NSX 3.0L(91-96)', 'NSX', 'RSX', 'Giulia Quadrifoglio', 'RS4(4.2L)(AWD)(07)','TT Quatro 3.2L (08-09)(AWD)', 'TTRS 2.5 Coupe (12-13)(AWD)',
-                     '135i Coupe(08-12)', '328i(E36)', '335i(07-13)(3.0)turbo', 'M2', 'M235','M3(E30)', 'M3(E36)', 'M3(E46)', 'M3(E90,E92,E93)', 'M5 E28 E34(85-93)',
-                     'M5 E39', 'Cooper S(02-04)', 'Cooper S(05-10)','Camaro SS(5th gen)', 'Camaro SS(6th gen)', 'Corvette C4','Corvette C7 ZR-1', 'Challenger R/T',
-                     'Challenger SRT8', 'Charger 5.7L', 'Charger SRT8', '328', '500 Abarth', 'Fiesta ST', 'Focus ST', 'Mustang GT350R', 'Mustang GT500','Civic Si',
-                     'S2000(00-08)','S2000 CR(2.2L)','IS F','Mazdaspeed3(07-09)', 'Mazdaspeed3(10-13)', 'Mazdaspeed6(06-07)', 'Miata 1.8L VVT', 'Miata NC', 'Miata ND',
-                     'Miata Mazdaspeed', 'RX-7 TT(3rd gen)','RX-8(09-11)', 'RX-8(212hp)(Auto)(06-07)','EVO VIII','EVO X', '370Z', '400Z', '964', '993','997.1','BRZ(gen2)',
-                     'WRX(02-08)', 'GR86', 'Supra(2.0)','MR2 Turbo', 'MR2 SC','CTS-V(04-07)', 'GTI(06-09)', 'GTI(10-14)', 'GTI(15)', 'GOLF R32', 'GOLF R(15)', 'GOLF R(12-13)'],
-      twoStarModel: []
+      oneStarModel: ['RSX', 'Giulia Quadrifoglio','RS4(4.2L)(AWD)(07)', 'TT RS','M3/M4(G8X)(20)', 'MINI Cooper Works', 'E36 Non M',
+                     '328i(07-12)(3.0L 230 hp)', '335i(07-13)(3.0L turbo)', 'M2 Competition / CS', 'M3(E36)','M3(E30)', 'CTS-V Gen 2',
+                     'Camaro ZL1&Z28 (5th Gen)', 'Camaro SS(5th Gen incl 1LE)','Corvette C6 Z06 & GS', 'Corvette C7(incl Z51 & GS)',
+                     'Corvette C7 ZR1','Corvette C8 / C8 Z51', 'Viper ACR', '500 Abarth', 'Mustang GT V8(6th)','Focus RS', 'Civic & SI(Pre-05)',
+                     'S2000(K Swap)','Genesis 3.8L','IS250 (AWD)(06-08)','IS F','GS F', 'IS300', 'Mazdaspeed3', 'Mazdaspeed6',
+                     'NB(mazdaspeed)', 'NC', '600LT', '650s', '720s', 'E55 AMG(03-06)', 'E55 AMG(99-02)', 'SL55 AMG(03-06)','SLK 320(01-04)',
+                     'SLK32 AMG(02-04)','EVO IX', '350Z', 'GTO', '997 Turbo AWD', '991 All Models', '991 GT3RS', '992 All Models', '992 GT3',
+                     '718 Cayman/Boxster', 'Cayman/Boxster 986 S', 'Cayman/Boxster 987 Non S', '964', 'BRZ(gen2)', 'WRX 2.5L', 'Celica','MR2 S/2', 
+                     'Supra(2.0)', 'GR86', 'Jetta 2.0L GLI(12-15)'],
+      twoStarModel: ['NSX 3.0L(91-96)', 'NSX', 'R8(V8)', 'M3 (E90, E92, E93)','MINI Cooper S(05-10)', 'Z4', '135i Coupe(08-12)',
+                     '1M Coupe(3.0L turbo)', 'M235i Coupe(14-15)(3.0L)', 'M3(E46)','M3(E9X)', 'CTS-V Gen 1', 'CTS-V Gen 3',
+                     'Camaro ZL1 (6th Gen)', 'Camaro SS(6h Gen)', 'Viper', 'Mustang GT350', 'Fiesta ST', 'Focus ST','S2000 CR(2.2L)',
+                     'G35', 'G37', 'Elise', 'Evora', 'RX-7(FB&FC)', 'ND','C55 AMG(05-06)', 'EVO X', '370Z', '996', '997 GT3','991 GT2RS',
+                     'Cayman GT4', 'Cayman/Boxster 987 S', 'WRX STi(08+)', 'MR2 Turbo']
     }),
     methods: {
       calculateScore() {
@@ -731,6 +795,11 @@
         if (this.twoStarModel.includes(this.carspec.model)) {
           this.score += 14;
         }
+
+        // Adding engine type socre:
+        this.carspec.inductype.forEach(element => {
+          this.score += this.scoreLookupTable.inductype[element]
+        }); 
 
         // Adding engine
         this.carspec.engine.forEach(element => {
